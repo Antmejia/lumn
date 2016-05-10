@@ -6,25 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Shine Weather App</title>
+    <title>lumn Weather App</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.0.8/angular-material.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One|Raleway:400,300,600' rel='stylesheet' type='text/css'>
     <link href="css/main.css" rel="stylesheet">
 </head>
 
-<body ng-app="autocompleteCustomTemplateDemo">
+<body ng-app="lumn">
     <header>
         <div class="brand">
-            <h1>Shine</h1>
+            <h1>lumn</h1>
         </div>
         <h4>Awesome weather app</h4>
     </header>
-    <div class="wrapper">
-        <div class="citysearch" ng-controller="DemoCtrl as ctrl" layout="column" ng-cloak>
+    <div class="wrapper" ng-controller="search as ctrl">
+        <div class="citysearch" layout="column" ng-cloak>
             <md-content layout-padding layout="column">
                 <form ng-submit="$event.preventDefault()">
-                    <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.city" md-min-length="0" placeholder="Pick an Angular repository" md-menu-class="autocomplete-custom-template">
+                    <md-autocomplete 
+                      ng-disabled="ctrl.isDisabled" 
+                      md-no-cache="ctrl.noCache" 
+                      md-selected-item="ctrl.selectedItem" 
+                      md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" 
+                      md-search-text="ctrl.searchText" 
+                      md-selected-item-change="ctrl.selectedItemChange(item)" 
+                      md-items="item in ctrl.querySearch(ctrl.searchText)" 
+                      md-item-text="item.city" 
+                      md-min-length="1" 
+                      placeholder="Enter a city" 
+                      md-menu-class="autocomplete-custom-template">
                         <md-item-template>
                             <span class="item-title">
                                 <span> {{item.city}}</span>
@@ -32,12 +44,13 @@
                             <span class="item-metadata">
                                 <span class="item-metastat state-abbv">, {{item.state}}</span>
                             </span>
+                            <md-not-found>No matches found.</md-not-found>
                         </md-item-template>
                     </md-autocomplete>
                 </form>
             </md-content>
         </div>
-        <p>Use my current location</p>
+        <md-button ng-click="ctrl.coords()" class="cur-location">Use my current location</md-button>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

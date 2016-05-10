@@ -12,6 +12,11 @@ body {
     -o-background-size: cover;
 }
 
+::selection {
+    color: #F3F3F3; 
+    background: #90CAF9;
+}
+
 html {
     overflow: hidden;
 }
@@ -64,6 +69,10 @@ md-autocomplete {
 	color: rgba(255,255,255,1);
 }
 
+md-autocomplete p {
+	display: none;
+}
+
 .md-autocomplete-suggestions-container * {
 }
 
@@ -71,10 +80,51 @@ md-autocomplete {
 	color: #6D6D6D;
 }
 
-md-icon {
+md-autocomplete md-icon {
 	display: none;
 }
 
 .wrapper div {
 	margin-top: 30%;
+}
+
+.cur-location {
+	margin-top: -24px;
+}
+
+/*************TOAST NOTIFICATIONS************/
+
+.md-toast-content {
+	background-color: #fff!important;
+}
+
+.md-toast-text {
+	color: rgba(0,0,0,0.87);
+}
+
+.md-error-theme .md-toast-text {
+	color: #EF5350;
+}
+
+.md-success-theme .md-toast-text {
+	color: #8BC34A;
+}
+
+/*************FONTS************/
+
+.brand {
+	font-family: 'Poiret One', sans-serif;
+}
+
+header h4 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+}
+
+.wrapper {
+	font-family: 'Raleway', sans-serif;
+}
+
+.cur-location {
+	font-size: 12px;
 }
