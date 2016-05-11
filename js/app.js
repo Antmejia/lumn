@@ -64,7 +64,7 @@
         /**
          * Get Weather
          */         
-         function getWeather(item, method) {
+         function getWeather(value, method) {
             var url = "";
             // Determine the method of getting weather results ?
             // Set the URL to the appropriate one
@@ -72,12 +72,13 @@
             // -- Animate away all the unnecessary stuff
             // -- Use ng-include to add our template and animate data in
             if (method === "cityID") {
-                url = "http://api.openweathermap.org/data/2.5/weather?id=" + item.id;
+                url = "http://api.openweathermap.org/data/2.5/weather?id=" + value.id;
                 alert(url);
-                confirm(item.city + ", " + item.state + " - " + method);
+                confirm(value.city + ", " + value.state + " - " + method);
             }
            else if (method === "geo") {               
-                url = "http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139";
+                url = "http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139" + value;
+                confirm(url);
             }
             else {
                 alert("sorry");
@@ -86,7 +87,8 @@
         
         function coords() {
             if (navigator.geolocation) { 
-                navigator.geolocation.getCurrentPosition(showPosition, showError);            
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            getWeather("testlat, testlon", "geo");          
              } 
              else { 
                  $mdToast.show(
@@ -98,33 +100,33 @@
              } 
              
              function showPosition(position) {
-    alert("Latitude: " + position.coords.latitude + "\nLongitude: " + position.coords.longitude);
-}
-
-function showError(error) {
-	var msg;
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            msg = "User denied the request for Geolocation."
-            break;
-        case error.POSITION_UNAVAILABLE:
-            msg = "Location information is unavailable."
-            break;
-        case error.TIMEOUT:
-            msg = "The request to get user location timed out."
-            break;
-        case error.UNKNOWN_ERROR:
-            msg = "An unknown error occurred."
-            break;
-    }
-    $mdToast.show(
-        $mdToast.simple()
-             .textContent(msg)
-             .hideDelay(4000)
-             .theme("error")
-      );
-}              
-
+                 alert("Latitude: " + position.coords.latitude + "\nLongitude: " + position.coords.longitude);
+                 getWeather("testlat, testlon", "geo");
+             }
+             
+              function showError(error) {
+	              var msg;
+                  switch(error.code) {
+                      case error.PERMISSION_DENIED:
+                          msg = "User denied the request for Geolocation."
+                      break;
+                      case error.POSITION_UNAVAILABLE:
+                          msg = "Location information is unavailable."
+                      break;
+                      case error.TIMEOUT:
+                          msg = "The request to get user location timed out."
+                      break;
+                      case error.UNKNOWN_ERROR:
+                          msg = "An unknown error occurred."
+                      break;
+                  }
+                 $mdToast.show(
+                     $mdToast.simple()
+                     .textContent(msg)
+                     .hideDelay(4000)
+                     .theme("error")
+                 );
+             }              
          }
         /**
          * Create filter function for a query string
