@@ -87,8 +87,7 @@
         
         function coords() {
             if (navigator.geolocation) { 
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            getWeather("testlat, testlon", "geo");          
+                navigator.geolocation.getCurrentPosition(showPosition, showError);          
              } 
              else { 
                  $mdToast.show(
